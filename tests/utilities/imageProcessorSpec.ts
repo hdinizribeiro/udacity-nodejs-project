@@ -35,7 +35,7 @@ describe('Resize image tests', () => {
     // Assert
     await expectAsync(promise).toBeRejectedWithError(
       NotFoundError,
-      'File not found'
+      'Image not found'
     );
   });
 
