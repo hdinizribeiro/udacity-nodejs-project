@@ -13,6 +13,7 @@ The application of this project intent to resize an already existing image based
 GET /api/image?imageName={name_of_image}&width={width_in_pixels}&height={height_in_pixels}
 
 Available values for name_of_image:
+
 - encenadaport
 - fjord
 - icelandwaterfall
@@ -20,21 +21,25 @@ Available values for name_of_image:
 - santamonica
 
 ### Responses
-- 200: 
-    - Image resized successfully
-- 400: 
-    - Width or height is 0 or above 2000 pixels
-    - Image name, or width, or height not informed
+
+- 200:
+  - Image resized successfully
+- 400:
+  - Width or height is 0 or above 2000 pixels
+  - Image name, or width, or height not informed
 - 404:
-    - Image not found
+  - Image not found
 
-## Tests
+## Scripts
 
-This application is composed by 10 tests, that can be executed using the command:
-```
-npm run test
-```
+### Build
 
+`npm run build`: Builds the application into javascript
 
+### Start
 
+`npm start`: Starts the application using nodemon on localhost:3000
 
+### Test
+
+`npm run test`: Run all the test suites of the application.
