@@ -43,3 +43,7 @@ Available values for name_of_image:
 ### Test
 
 `npm run test`: Run all the test suites of the application.
+
+## Additional info
+
+To validate the endpoint input I used the package express-validator. Checking about this package, it seems to be a very reliable package to validate endpoints inputs, by the time of the creation of this project it has 399k weekly downloads
