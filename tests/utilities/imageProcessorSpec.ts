@@ -42,7 +42,7 @@ describe('Resize image tests', () => {
   it('Should throw error if the size requests is above 2000x2000', async () => {
     // Arrange
     // Act
-    const promise = imageProcessor.resizeAndStore('any', 2001, 2000);
+    const promise = imageProcessor.resizeAndStore('anyImageName', 2001, 2000);
 
     // Assert
     await expectAsync(promise).toBeRejectedWithError(

@@ -1,7 +1,12 @@
-import { ErrorRequestHandler } from 'express';
+import express, { ErrorRequestHandler } from 'express';
 import { UserFacingError } from '../utilities/errors/baseErrors';
 
-const defaultErrorMiddleware: ErrorRequestHandler = (err, req, res, next) => {
+const defaultErrorMiddleware: ErrorRequestHandler = (
+  err: express.ErrorRequestHandler,
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+): void => {
   if (err instanceof UserFacingError) {
     res
       .status(err.statusCode)
