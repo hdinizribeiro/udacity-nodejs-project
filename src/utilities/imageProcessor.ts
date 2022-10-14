@@ -1,8 +1,16 @@
 import { promises as fsPromises } from 'fs';
-import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 import { BadRequestError, NotFoundError } from './errors/userFacingErrors';
+
+async function pathExists(path: string): Promise<boolean> {
+  try {
+    await fsPromises.access(path);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 const resizeAndStore = async (
   imagePath: string,
@@ -17,20 +25,20 @@ const resizeAndStore = async (
     throw new BadRequestError('Image size too large');
   }
 
-  if (!fs.existsSync(imagePath)) {
+  if (!(await pathExists(imagePath))) {
     throw new NotFoundError('Image not found');
   }
 
   const thumbsDir = `${path.dirname(imagePath)}/thumbs`;
 
-  if (!fs.existsSync(thumbsDir)) {
+  if (!(await pathExists(thumbsDir))) {
     await fsPromises.mkdir(thumbsDir);
   }
 
   const parsedImagePath = path.parse(imagePath);
   const resultPath = `${thumbsDir}/${parsedImagePath.name}_${height}_${width}.${parsedImagePath.ext}`;
 
-  if (fs.existsSync(resultPath)) {
+  if (await pathExists(resultPath)) {
     return resultPath;
   }
 
